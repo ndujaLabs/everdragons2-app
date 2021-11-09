@@ -1,15 +1,48 @@
 // eslint-disable-next-line no-undef
 import CenteredImage from './sections/CenteredImage';
 
-const {Container, Row, Col} = ReactBootstrap
+const {Container, Row, Col, Button} = ReactBootstrap
 import * as Scroll from 'react-scroll'
 import Markdown from 'react-markdown-it'
 
 
 import Base from './Base'
-import Ab from './Ab'
+import Ab from './Ab' 
 
 export default class FullStory extends Base {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {email: ''};
+
+    this.bindMany([
+      'handleChange',
+      'handleSubmit'
+    ])
+  }
+
+  handleChange(event) {
+    this.setState({email: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.Store.email = this.state.email; 
+
+    if (!this.state.email) {
+      alert("Please enter an email.");
+      return
+    }
+
+    if (localStorage.getItem(this.state.email)) {
+      alert("You have already subscribed!");
+      return
+    } else {
+      localStorage.setItem(this.state.email, this.state.email);
+      alert("You have subscribed! " + this.state.email);
+    }
+  }
 
   componentDidMount() {
     Scroll.animateScroll.scrollToTop()
@@ -76,6 +109,15 @@ A new bright light appears in the center of the sky. The spaceship is getting cl
                   <CenteredImage src={'/images/everDragonsLogo.png'} />
                   <div className={'centered'}>
                     <h2 className={'likeh1'}>Welcome the EverDragons2!</h2>
+                  </div>
+                  <div className="fullStoryButton">
+                  <form onSubmit={this.handleSubmit}>
+                    <label className="subLabel">
+                      Join our newsletter
+                      <input className="emailInput" type="text" value={this.state.value} onChange={this.handleChange} />
+                    </label>
+                    <input className="subButton" type="submit" value="Subscribe" placeholder="Email"/>
+                  </form>
                   </div>
                 </div>
               </div>

@@ -824,3 +824,34 @@ span.button {
     background-attachment: fixed;
     background-size: contain;
 }
+
+.fullStoryButton {
+    font-size: 17px;
+    align-items: center;
+    margin: auto !important;
+}
+.subButton {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.678);
+    border-radius: 30px;
+    margin: 10px;
+    padding: 7px;
+    width: 30%;
+    border-width: 1px !important;
+    border-color: rgba(169, 169, 169, 0.514);
+   
+}
+
+.emailInput {
+    background-color: rgb(255, 255, 255);
+    border-radius: 30px;
+    width: 80%;
+    padding: 7px;
+    border-width: 1px;;
+    border-color: rgba(0, 0, 0, 0.253);
+}
+.subLabel {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+}
