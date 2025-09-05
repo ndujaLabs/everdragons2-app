@@ -16,8 +16,8 @@ docker run -d \
   -p 80:80 -p 443:443 \
   -v /etc/nginx/conf.d  \
   -v /etc/nginx/vhost.d \
-  -v ~/.etc/nginx/html:/usr/share/nginx/html \
-  -v ~/.etc/nginx/certs:/etc/nginx/certs:ro \
+  -v /root/.etc/nginx/html:/usr/share/nginx/html \
+  -v /root/.etc/nginx/certs:/etc/nginx/certs:ro \
   --label com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy \
   nginx
 
@@ -25,7 +25,7 @@ docker run -d \
     --name nginx-gen \
     --restart unless-stopped \
     --volumes-from nginx \
-    -v ~/.etc/nginx/templates/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro \
+    -v /root/.etc/nginx/templates/nginx.tmpl:/etc/docker-gen/templates/nginx.tmpl:ro \
     -v /var/run/docker.sock:/tmp/docker.sock:ro \
     --label com.github.jrcs.letsencrypt_nginx_proxy_companion.docker_gen \
     jwilder/docker-gen \
@@ -35,6 +35,6 @@ docker run -d \
     --name nginx-letsencrypt \
     --restart unless-stopped \
     --volumes-from nginx \
-    -v ~/.etc/nginx/certs:/etc/nginx/certs:rw \
+    -v /root/.etc/nginx/certs:/etc/nginx/certs:rw \
     -v /var/run/docker.sock:/var/run/docker.sock:ro \
     jrcs/letsencrypt-nginx-proxy-companion
