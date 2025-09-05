@@ -10,7 +10,7 @@ docker run -d \
   -p 6660 \
   --restart unless-stopped \
   -v $PWD:/usr/src/app \
-  -v /vol/log/everdragons2-com_app:/var/log/everdragons2-com_app \
+  -v ~/.log/everdragons2-com_app:/var/log/everdragons2-com_app \
   -e NODE_ENV=production \
   -e VIRTUAL_HOST=everdragons2.com,www.everdragons2.com \
   -e LETSENCRYPT_HOST=everdragons2.com,www.everdragons2.com \
